@@ -1,0 +1,82 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<script>
+    $(document).ready(function () {
+
+     
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='item_id' type='item_id' placeholder='Item ID' class='form-control input-md'   /> </td><td><input  name='item_name' type='text' placeholder='Item Name'  class='form-control input-md'></td><td><input  name='description' type='text' placeholder='Description'  class='form-control input-md' ></td><td><input name='quantity' type='text' placeholder='Quantity' class='form-control input-md'  /> </td><td><input name='unit_price' type='text' placeholder='Price Per Unit' class='form-control input-md'  /> </td>");
+
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++; 
+  });
+     $("#delete_row").click(function(){
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
+});
+</script>
+<div class="formpurchaseorder margintop" >
+
+    <form class="purchaseordersubmission" action="purchaserequisitionconfirmation" method="POST">
+      {% csrf_token %}
+        <div class="row margintop">
+            <div class="col">
+                <input type="text" class="form-control" name="purchase_requisition_id" value="{{purchase_requisition_id}}"  placeholder="Purchase Requisition ID" readonly>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="person_id" id="person_id" value="{{person_id}}"placeholder="Person ID" readonly>
+            </div>
+      
+        </div>
+
+        <br/>
+
+        <div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-bordered table-hover" id="tab_logic">
+
+				<thead>
+					<tr >
+						<th class="text-center">#</th>
+						<th class="text-center">Item ID</th>
+						<th class="text-center">Item Name</th>
+                        <th class="text-center">Description</th>
+						<th class="text-center">Quantity</th>
+                        <th class="text-center">Price Per Unit</th>
+					</tr>
+				</thead>
+				<tbody name="item_rows">
+					<tr id='addr0'>
+						<td>1</td>
+                        <td> <input type="text" name='item_id' placeholder='Item id'  class="form-control" /> </td>
+						<td><input type="text" name="item_name"  placeholder='Item name' class="form-control" ></td>
+						<td><input type="text" name='description' placeholder='Description' class="form-control" /></td>
+                        <td><input type="text" name='quantity' placeholder='Quantity'  class="form-control" /></td>
+                        <td><input type="text" name='unit_price' placeholder='Price Per Unit'  class="form-control"  /></td>
+					</tr> 
+                    <tr id='addr1'></tr>
+               
+				</tbody>
+			</table>
+		</div>
+        </div>
+	    <a id="add_row" class="btn btn-default pull-left">Add Item</a><a id='delete_row' class="pull-right btn btn-default">Delete Item</a>
+       
+        <div class="margintop">
+            <button type="submit" class="btn btn-success btn-square buttonsize">Submit</button>
+            <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a>
+        </div>
+
+
+    </form>
+
+</div>
+ 
+{% endblock %}

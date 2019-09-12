@@ -1,0 +1,84 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="formpurchaseorder " >
+    
+    
+        <div>
+            <label class="labelpodetails fontlabel">Time Created: </label>
+            <label>{{time_created}}</label>
+        </div>
+    <form class="purchaseordersubmission margintop" action="purchaseorderhistory" method="GET">
+     {% csrf_token %}
+        <div class="row">
+           <div class="col">
+                <label class="labelpodetails fontlabel">Purchase Order ID</label>
+                <input type="text" class="form-control" name="purchase_order_id" value="{{purchase_order_id}}" readonly>
+            </div>
+            <div class="col">
+                <label class="labelpodetails fontlabel">Quotation ID</label>
+              <input type="text" class="form-control" name="quotation_id" value="{{quotation_id}}" readonly>
+            </div>
+            <div class="col">
+                <label class="labelpodetails fontlabel">Company Information</label>
+              <textarea type="text" class="infobox" name="staff_info" readonly>{{staff.person_name}} &#13;&#10;{{staff.person_address}} &#13;&#10;{{staff.person_phone_number}}</textarea>
+            </div>
+            <div class="col">
+                <label class="labelpodetails fontlabel">Vendor Information</label>
+              <textarea type="text" class="infobox" name="vendor_info"  readonly>{{vendor_info.vendor_name}} &#13;&#10;{{vendor_info.vendor_address}} &#13;&#10;{{vendor_info.vendor_phone_number}}</textarea>
+            </div>
+        </div>
+        <div class="row margintop">
+            <div class="col">
+                <label class="labelpodetails fontlabel">Shipping Instructions</label>
+               <textarea class="form-control potextarea" name="shipping_inst" id="shipping_inst" placeholder="Shipping Instructions (If applicable)" readonly >{{shipping_inst}}</textarea>
+            </div>
+            <div class="col">
+                <label class="labelpodetails fontlabel">Description</label>
+                <textarea class="form-control potextarea" name="description" id="description" placeholder="Purchase Order Description (If applicable)" readonly>{{description}}</textarea>
+            </div>
+        </div>
+
+        <table class="table table-striped margintop">
+          <thead>
+            <tr> 
+              <th scope="col" class="fontlabel">Item ID</th>
+              <th scope="col" class="fontlabel">Item</th>
+              <th scope="col" class="fontlabel">Quantity</th>
+              <th scope="col" class="fontlabel">Price Per Unit (RM)</th>
+              <th scope="col" class="fontlabel">Total (RM)</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for r in rows %}
+            <tr>
+                 <td>{{r.item_id}}</td>
+                 <td>{{r.item_id.item_name}}</td>
+                 <td>{{r.quantity}}</td>
+                 <td>{{r.unit_price}}</td>
+                 <td>{{r.total_price}}</td>
+            </tr>
+              {% endfor %}
+          </tbody>
+            <tfoot>
+
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <th class="fontlabel">Grand Total</th>
+                  <td>{{grand_total}}</td>
+              </tr>
+          </tfoot>
+        </table>
+        <div class="margintop">
+            <button type="submit" class="btn btn-info buttonsize">Close</button>
+        </div>
+
+
+    </form>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="purchaseorderhistory margintop" action="menu">
+
+    <form action="quotationhistorydetails" method="GET">
+        <table class="table table-striped margintop">
+            <thead>
+                <tr>
+                    <th scope="col">Quotation ID</th>
+                    <th scope="col">Staff ID</th>
+                    <th scope="col">Vendor ID</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in rows %}
+                <tr>
+                    <td><button type="submit" name="quo_id" value="{{r.quotation_id}}" class="btn btn-info">{{r.quotation_id}}</button></td>
+                    <td>{{r.person_id.person_id}}</td>
+                    <td>{{r.vendor_id}}</td>
+                    <td>{{r.time_created}}</td>
+                    <td><button type="submit" class="btn btn-info buttonsize1">Issue Purchase Order</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="margintop">
+            <a type="submit" class="btn btn-info" href="/menu">Back</a>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

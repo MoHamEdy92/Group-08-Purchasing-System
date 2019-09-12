@@ -1,0 +1,84 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="formpurchaseorder" >
+    
+    
+        <div>
+            <label class="labelpodetails">Time Created: </label>
+            <label>{{time_created}}</label>
+        </div>
+    <form class="purchaseordersubmission margintop" action="menu" method="POST">
+     {% csrf_token %}
+        <div class="row">
+           <div class="col">
+                <label class="labelpodetails">Invoice ID</label>
+                <input type="text" class="form-control" name="invoice_id" value="{{invoice_id}}" readonly>
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Purchase Order ID</label>
+              <input type="text" class="form-control" name="purchase_order_id" value="{{purchase_order_id}}" readonly>
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Company Information</label>
+              <textarea type="text" class="infobox" name="staff_info" readonly>{{staff_info.person_name}} &#13;&#10;{{staff_info.person_address}} &#13;&#10;{{staff_info.person_phone_number}}</textarea>
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Vendor Information</label>
+              <textarea type="text" class="infobox" name="vendor_info"  readonly>{{vendor_info.vendor_name}} &#13;&#10;{{vendor_info.vendor_address}} &#13;&#10;{{vendor_info.vendor_phone_number}}</textarea>
+            </div>
+        </div>
+        <div class="row margintop">
+            <div class="col">
+                <label class="labelpodetails">Shipping Instructions</label>
+               <textarea class="form-control potextarea" name="shipping_inst" id="shipping_inst" placeholder="Shipping Instructions (If applicable)" readonly >{{shipping_inst}}</textarea>
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Description</label>
+                <textarea class="form-control potextarea" name="description" id="description" placeholder="Purchase Order Description (If applicable)" readonly>{{description}}</textarea>
+            </div>
+        </div>
+
+        <table class="table table-striped margintop">
+          <thead>
+            <tr>
+              <th scope="col">Item ID</th>
+              <th scope="col">Item</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price Per Unit (RM)</th>
+              <th scope="col">Total (RM)</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for r in rows %}
+            <tr>
+                 <td>{{r.item_id}}</td>
+                 <td>{{r.item_name}}</td>
+                 <td>{{r.quantity}}</td>
+                 <td>{{r.unit_price}}</td>
+                 <td>{{r.total_price}}</td>
+            </tr>
+              {% endfor %}
+          </tbody>
+            <tfoot>
+
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <th>Grand Total</th>
+                  <td>{{grand_total}}</td>
+              </tr>
+          </tfoot>
+        </table>
+        <div class="margintop">
+            <button type="submit" class="btn btn-info buttonsize">Close</button>
+        </div>
+
+
+    </form>
+
+</div>
+
+
+{% endblock %}

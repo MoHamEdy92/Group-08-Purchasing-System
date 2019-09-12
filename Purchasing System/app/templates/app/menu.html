@@ -1,0 +1,85 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <br />
+    <br />
+    <table>
+        <tr><td>
+    <form class="margintop" action='purchaserequisitionform' method='GET'>
+        <button type="submit" class="btn btn-info">Create Purchase Requisition</button><br />
+    </form>
+            </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='purchaserequisitionhistory' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Purchase Requisition</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='requestforquotationform' method='GET'>
+        <button type="submit" class="btn btn-info">Create Request For Quotation</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='requestforquotationhistory' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Request For Quotation</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='quotationform' method='GET'>
+        <button type="submit" class="btn btn-info">Record Quotation</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='quotationhistory' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Quotation</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='purchaseorderform' method='GET'>
+        <button type="submit" class="btn btn-info">Issue Purchase Order</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='purchaseorderhistory' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Purchase Order</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='deliveryorderform' method='GET'>
+        <button type="submit" class="btn btn-info">Record Delivery Order</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='deliveryorderhistory' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Delivery Order</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='invoiceform' method='GET'>
+        <button type="submit" class="btn btn-info">Record Invoice</button><br />
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='invoicehistory' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">Invoice History</button><br />
+    </form>
+        </td></tr>
+            
+    </table>
+</div>
+
+{% endblock %}
+ 

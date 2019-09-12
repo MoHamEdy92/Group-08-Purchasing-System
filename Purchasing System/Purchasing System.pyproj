@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>Purchasing System</Name>
+    <RootNamespace>Purchasing System</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>063cdda7-e05b-45a9-ba42-e8e190a94a92</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>Purchasing_System.settings</DjangoSettingsModule>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app\admin.py" />
+    <Compile Include="app\forms.py" />
+    <Compile Include="app\models.py" />
+    <Compile Include="app\tests.py" />
+    <Compile Include="app\views.py" />
+    <Compile Include="app\__init__.py" />
+    <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="DeliveryOrder\admin.py" />
+    <Compile Include="DeliveryOrder\apps.py" />
+    <Compile Include="DeliveryOrder\migrations\__init__.py" />
+    <Compile Include="DeliveryOrder\models.py" />
+    <Compile Include="DeliveryOrder\tests.py" />
+    <Compile Include="DeliveryOrder\views.py" />
+    <Compile Include="DeliveryOrder\__init__.py" />
+    <Compile Include="Invoice\admin.py" />
+    <Compile Include="Invoice\apps.py" />
+    <Compile Include="Invoice\migrations\__init__.py" />
+    <Compile Include="Invoice\models.py" />
+    <Compile Include="Invoice\tests.py" />
+    <Compile Include="Invoice\views.py" />
+    <Compile Include="Invoice\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="PurchaseOrder\admin.py" />
+    <Compile Include="PurchaseOrder\apps.py" />
+    <Compile Include="PurchaseOrder\migrations\__init__.py" />
+    <Compile Include="PurchaseOrder\models.py" />
+    <Compile Include="PurchaseOrder\tests.py" />
+    <Compile Include="PurchaseOrder\views.py" />
+    <Compile Include="PurchaseOrder\__init__.py" />
+    <Compile Include="PurchaseRequisition\admin.py" />
+    <Compile Include="PurchaseRequisition\apps.py" />
+    <Compile Include="PurchaseRequisition\migrations\__init__.py" />
+    <Compile Include="PurchaseRequisition\models.py" />
+    <Compile Include="PurchaseRequisition\tests.py" />
+    <Compile Include="PurchaseRequisition\views.py" />
+    <Compile Include="PurchaseRequisition\__init__.py" />
+    <Compile Include="Purchasing_System\__init__.py" />
+    <Compile Include="Purchasing_System\settings.py" />
+    <Compile Include="Purchasing_System\urls.py" />
+    <Compile Include="Purchasing_System\wsgi.py" />
+    <Compile Include="Quotation\admin.py" />
+    <Compile Include="Quotation\apps.py" />
+    <Compile Include="Quotation\migrations\__init__.py" />
+    <Compile Include="Quotation\models.py" />
+    <Compile Include="Quotation\tests.py" />
+    <Compile Include="Quotation\views.py" />
+    <Compile Include="Quotation\__init__.py" />
+    <Compile Include="RequestForQuotation\admin.py" />
+    <Compile Include="RequestForQuotation\apps.py" />
+    <Compile Include="RequestForQuotation\migrations\__init__.py" />
+    <Compile Include="RequestForQuotation\models.py" />
+    <Compile Include="RequestForQuotation\tests.py" />
+    <Compile Include="RequestForQuotation\views.py" />
+    <Compile Include="RequestForQuotation\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\migrations\" />
+    <Folder Include="app\static\" />
+    <Folder Include="app\static\app\" />
+    <Folder Include="app\static\app\content\" />
+    <Folder Include="app\static\app\fonts\" />
+    <Folder Include="app\static\app\scripts\" />
+    <Folder Include="app\templates\" />
+    <Folder Include="app\templates\app\" />
+    <Folder Include="DeliveryOrder\" />
+    <Folder Include="DeliveryOrder\migrations\" />
+    <Folder Include="DeliveryOrder\templates\" />
+    <Folder Include="DeliveryOrder\templates\DeliveryOrder\" />
+    <Folder Include="Invoice\" />
+    <Folder Include="Invoice\migrations\" />
+    <Folder Include="Invoice\templates\" />
+    <Folder Include="Invoice\templates\Invoice\" />
+    <Folder Include="PurchaseOrder\" />
+    <Folder Include="PurchaseOrder\migrations\" />
+    <Folder Include="PurchaseOrder\templates\" />
+    <Folder Include="PurchaseOrder\templates\PurchaseOrder\" />
+    <Folder Include="PurchaseRequisition\" />
+    <Folder Include="PurchaseRequisition\migrations\" />
+    <Folder Include="PurchaseRequisition\templates\" />
+    <Folder Include="PurchaseRequisition\templates\PurchaseRequisition\" />
+    <Folder Include="Purchasing_System\" />
+    <Folder Include="Quotation\" />
+    <Folder Include="Quotation\migrations\" />
+    <Folder Include="Quotation\templates\" />
+    <Folder Include="Quotation\templates\Quotation\" />
+    <Folder Include="RequestForQuotation\" />
+    <Folder Include="RequestForQuotation\migrations\" />
+    <Folder Include="RequestForQuotation\templates\" />
+    <Folder Include="RequestForQuotation\templates\RequestForQuotation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\templates\app\menu.html" />
+    <Content Include="DeliveryOrder\templates\DeliveryOrder\deliveryorderconfirmation.html" />
+    <Content Include="DeliveryOrder\templates\DeliveryOrder\deliveryorderdetails.html" />
+    <Content Include="DeliveryOrder\templates\DeliveryOrder\deliveryorderform.html" />
+    <Content Include="DeliveryOrder\templates\DeliveryOrder\deliveryorderhistory.html" />
+    <Content Include="DeliveryOrder\templates\DeliveryOrder\deliveryorderhistorydetails.html" />
+    <Content Include="DeliveryOrder\templates\DeliveryOrder\index.html" />
+    <Content Include="Invoice\templates\Invoice\index.html" />
+    <Content Include="Invoice\templates\Invoice\invoiceconfirmation.html" />
+    <Content Include="Invoice\templates\Invoice\invoicedetails.html" />
+    <Content Include="Invoice\templates\Invoice\invoiceform.html" />
+    <Content Include="Invoice\templates\Invoice\invoicehistory.html" />
+    <Content Include="Invoice\templates\Invoice\invoicehistorydetails.html" />
+    <Content Include="PurchaseOrder\templates\PurchaseOrder\index.html" />
+    <Content Include="PurchaseOrder\templates\PurchaseOrder\purchaseorderconfirmation.html" />
+    <Content Include="PurchaseOrder\templates\PurchaseOrder\purchaseorderdetails.html" />
+    <Content Include="PurchaseOrder\templates\PurchaseOrder\purchaseorderform.html" />
+    <Content Include="PurchaseOrder\templates\PurchaseOrder\purchaseorderhistory.html" />
+    <Content Include="PurchaseOrder\templates\PurchaseOrder\purchaseorderhistorydetails.html" />
+    <Content Include="PurchaseRequisition\templates\PurchaseRequisition\index.html" />
+    <Content Include="PurchaseRequisition\templates\PurchaseRequisition\purchaserequisitionconfirmation.html" />
+    <Content Include="PurchaseRequisition\templates\PurchaseRequisition\purchaserequisitiondetails.html" />
+    <Content Include="PurchaseRequisition\templates\PurchaseRequisition\purchaserequisitionform.html" />
+    <Content Include="PurchaseRequisition\templates\PurchaseRequisition\purchaserequisitionhistory.html" />
+    <Content Include="PurchaseRequisition\templates\PurchaseRequisition\purchaserequisitionhistorydetails.html" />
+    <Content Include="Quotation\templates\Quotation\index.html" />
+    <Content Include="Quotation\templates\Quotation\quotationconfirmation.html" />
+    <Content Include="Quotation\templates\Quotation\quotationdetails.html" />
+    <Content Include="Quotation\templates\Quotation\quotationform.html" />
+    <Content Include="Quotation\templates\Quotation\quotationhistory.html" />
+    <Content Include="Quotation\templates\Quotation\quotationhistorydetails.html" />
+    <Content Include="RequestForQuotation\templates\RequestForQuotation\index.html" />
+    <Content Include="RequestForQuotation\templates\RequestForQuotation\requestforquotationconfirmation.html" />
+    <Content Include="RequestForQuotation\templates\RequestForQuotation\requestforquotationdetails.html" />
+    <Content Include="RequestForQuotation\templates\RequestForQuotation\requestforquotationform.html" />
+    <Content Include="RequestForQuotation\templates\RequestForQuotation\requestforquotationhistory.html" />
+    <Content Include="RequestForQuotation\templates\RequestForQuotation\requestforquotationhistorydetails.html" />
+    <Content Include="requirements.txt" />
+    <Content Include="db.sqlite3" />
+    <Content Include="app\static\app\content\bootstrap.css" />
+    <Content Include="app\static\app\content\bootstrap.min.css" />
+    <Content Include="app\static\app\content\site.css" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\static\app\scripts\bootstrap.js" />
+    <Content Include="app\static\app\scripts\bootstrap.min.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.min.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.min.map" />
+    <Content Include="app\static\app\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.min.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="app\static\app\scripts\modernizr-2.6.2.js" />
+    <Content Include="app\static\app\scripts\respond.js" />
+    <Content Include="app\static\app\scripts\respond.min.js" />
+    <Content Include="app\static\app\scripts\_references.js" />
+    <Content Include="app\templates\app\about.html" />
+    <Content Include="app\templates\app\contact.html" />
+    <Content Include="app\templates\app\index.html" />
+    <Content Include="app\templates\app\layout.html" />
+    <Content Include="app\templates\app\login.html" />
+    <Content Include="app\templates\app\loginpartial.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.html">
+      <SubType>WebBrowser</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.6</Version>
+      <Description>env (Python 3.6 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

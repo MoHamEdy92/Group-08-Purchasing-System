@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="purcahseorderhistory margintop" >
+    
+    <form action="purchaseorderhistorydetails" method="GET">
+        <table class="table table-striped margintop">
+          <thead>
+            <tr>
+              <th scope="col" class="fontlabel">Purchase Order ID</th>
+              <th scope="col" class="fontlabel">Staff ID</th>
+              <th scope="col" class="fontlabel">Vendor ID</th>
+              <th scope="col" class="fontlabel">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for r in rows %}
+            <tr>
+                 <td><button type="submit" name="po_id" value="{{r.purchase_order_id}}" class="btn btn-info" >{{r.purchase_order_id}}</button></td>
+                 <td>{{r.person_id.person_id}}</td>
+                 <td>{{r.vendor_id}}</td>
+                 <td>{{r.time_created}}</td>
+
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    </form>
+    <form action="menu">
+        <div class="margintop">
+            <button type="submit" class="btn btn-info" >Back</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

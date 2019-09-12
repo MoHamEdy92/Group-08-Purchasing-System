@@ -1,0 +1,83 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="formpurchaseorder">
+
+
+    <form class="purchaseordersubmission margintop" action="quotationdetails" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <label class="labelpodetails">Quotation ID</label>
+                <input type="text" class="form-control" name="quotation_id" value="{{quotation_id}}" readonly>
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Request For Quotation ID</label>
+                <input type="text" class="form-control" name="request_for_quotation_id" value="{{request_for_quotation_id}}" readonly>
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Company Information</label>
+                <textarea type="text" class="infobox" name="staff_info" readonly>{{staff_info.person_name}} &#13;&#10;{{staff_info.person_address}} &#13;&#10;{{staff_info.person_phone_number}}</textarea>
+                <input type="text" class="hideinfo" name="staff_id" value="{{staff_id}}">
+            </div>
+            <div class="col">
+                <label class="labelpodetails">Vendor Information</label>
+                <textarea type="text" class="infobox" name="vendor_info" value="{{vendor_id}}" readonly>{{vendor_info.vendor_name}} &#13;&#10;{{vendor_info.vendor_address}} &#13;&#10;{{vendor_info.vendor_phone_number}}</textarea>
+                <input type="text" class="hideinfo" name="vendor_id" value="{{vendor_id}}">
+            </div>
+        </div>
+
+        <div class="row margintop">
+            <div class="col">
+                <label class="labelpodetails">Description</label>
+                <textarea class="form-control potextarea" name="description" id="description" placeholder="Quotation Description (If applicable)" readonly>{{description}}</textarea>
+            </div>
+        </div>
+
+        <table class="table table-striped margintop">
+            <thead>
+                <tr>
+                    <th scope="col">Item ID</th>
+                    <th scope="col">Reference ID</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price Per Unit (RM)</th>
+                    <th scope="col">Total (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in rows %}
+                <tr>
+                    <td><input type="text" class="form-control" name="item_id" value="{{r.item_id}}" readonly></td>
+                    <td><input type="text" class="form-control" name="ref_id" value="{{r.ref_id}}" placeholder = "Reference ID" readonly></td>
+                    <td><input type="text" class="form-control" name="item_name" value="{{r.item_name}}" readonly></td>
+                    <td><input type="text" class="form-control" name="quantity" value="{{r.quantity}}" readonly></td>
+                    <td><input type="text" class="form-control" name="unit_price" value="{{r.unit_price}}" readonly></td>
+                    <td><input type="text" class="form-control" name="total_price" value="{{r.total_price}}" readonly></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            <tfoot>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>Grand Total</th>
+                    <td><input type="text" class="form-control" name="total_price" value="{{grand_total}}" readonly></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="margintop">
+            <button type="submit" class="btn btn-info buttonsize">Confirm</button>
+            <a class="btn btn-danger btn-square buttonsize" href="/quotationform">Cancel</a>
+        </div>
+
+
+    </form>
+
+</div>
+
+
+{% endblock %}
