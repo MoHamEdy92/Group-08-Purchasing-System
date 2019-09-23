@@ -16,16 +16,11 @@ from django.views.generic import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
 from django.http.request import QueryDict
 from decimal import Decimal
-from prettytable import PrettyTable
+# from prettytable import PrettyTable
 from django.core.mail import send_mail
 from django.conf import settings
 import random
 import datetime 
-from django.db import IntegrityError
-
-from django.http import Http404
-from django.http import HttpResponse
-
 
 @login_required
 def requestforquotationform(request):
@@ -224,24 +219,24 @@ def requestforquotationdetails(request):
     pr.save()
 
     print(pr)
-    try:
+
     #send email to vendor
-        x = PrettyTable()
+    x = PrettyTable()
 
-        x.field_names = ["Item ID","Item Name","Quantity","Unit Price","Total Price"]
+    x.field_names = ["Item ID","Item Name","Quantity","Unit Price","Total Price"]
 
-        for item in items:
-            x.add_row([item['item_id'],item['item_name'],item['quantity'],item['unit_price'],item['total_price']])
+    for item in items:
+        x.add_row([item['item_id'],item['item_name'],item['quantity'],item['unit_price'],item['total_price']])
 
-        subject = 'REQUEST FOR QUOTATION INFORMATION: '+ rfq_id
-        message = 'This is the Request of Quotation Order Information: \n'+'Person In Charge: '+staff_info.person_name+'\n'+staff_info.person_address+ '\n' +'Request of Quotation Number: ' + rfq_id + '\n'+ '\n'+'Time Issued: ' + str(current_time) + '\n'+'Vendor ID: ' + vendor_id + '\n'+'Description: ' + description + '\n'+ str(x) +'\n'
+    subject = 'REQUEST FOR QUOTATION INFORMATION: '+ rfq_id
+    message = 'This is the Request of Quotation Order Information: \n'+'Person In Charge: '+staff_info.person_name+'\n'+staff_info.person_address+ '\n' +'Request of Quotation Number: ' + rfq_id + '\n'+ '\n'+'Time Issued: ' + str(current_time) + '\n'+'Vendor ID: ' + vendor_id + '\n'+'Description: ' + description + '\n'+ str(x) +'\n'
 
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [vendor_info.vendor_email,]
-        send_mail( subject, message, email_from, recipient_list )
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [vendor_info.vendor_email,]
+    send_mail( subject, message, email_from, recipient_list )
 
     # info pass to html
-        context = {
+    context = {
             'title': 'Request For Quotation Details',
             'purchase_requisition_id' : purchase_requisition_id,
             'request_for_quotation_id' : rfq_id,
@@ -252,37 +247,19 @@ def requestforquotationdetails(request):
             'grand_total': grand_total,
             'time_created': current_time,
             'description' : description
-            }
+        }
 
-        return render(request,'RequestForQuotation/requestforquotationdetails.html',context)
-    except IntegrityError:
-        return render(request,'RequestForQuotation/requestforquotationdetails.html',context)
-    except ConnectionRefusedError:
-         context = {
-            'title': 'Request For Quotation Details',
-            'purchase_requisition_id' : purchase_requisition_id,
-            'request_for_quotation_id' : rfq_id,
-            'vendor_id' : vendor_id,
-            'rows' : items,
-            'staff_info' : staff_info,
-            'vendor_info' : vendor_info,
-            'grand_total': grand_total,
-            'time_created': current_time,
-            'description' : description
-            }
-         return render(request,'RequestForQuotation/requestforquotationdetails.html',context)
+    return render(request,'RequestForQuotation/requestforquotationdetails.html',context)
 
 def requestforquotationhistorydetails(request):
 
     print(request.body)
-    try:
-        pk = request.GET['rfq_id']
-        request_for_quotation = RequestForQuotation.objects.get(request_for_quotation_id = pk)
-    
-        items = RequestForQuotationItem.objects.filter(request_for_quotation_id = pk)
+    pk = request.GET['rfq_id']
+    request_for_quotation = RequestForQuotation.objects.get(request_for_quotation_id = pk)
+    items = RequestForQuotationItem.objects.filter(request_for_quotation_id = pk)
 
-        print(request_for_quotation.person_id)
-        context = {
+    print(request_for_quotation.person_id)
+    context = {
 
             'title': 'Request For Quotation Details',
             'purchase_requisition_id' : request_for_quotation.purchase_requisition_id.pr_id,
@@ -295,27 +272,17 @@ def requestforquotationhistorydetails(request):
             'grand_total': request_for_quotation.total_price,
             'time_created': request_for_quotation.time_created,
             'description' : request_for_quotation.description
-            }
+        }
   
-        return render(request,'RequestForQuotation/requestforquotationhistorydetails.html',context)
-    except RequestForQuotation.DoesNotExist:
-        raise Http404("The data not exist")
     return render(request,'RequestForQuotation/requestforquotationhistorydetails.html',context)
 
 def requestforquotationhistory(request):
 
-    
-        request_for_quotations = RequestForQuotation.objects.all()
-        print(request_for_quotations)
-    
+    request_for_quotations = RequestForQuotation.objects.all()
 
-        context = {
+    context = {
             'title':'Request For Quotation History',
             'rows':request_for_quotations
-            }
-        return render(request,'RequestForQuotation/requestforquotationhistory.html',context)
-
-
-
-
+        }
+    return render(request,'RequestForQuotation/requestforquotationhistory.html',context)
 
