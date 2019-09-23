@@ -45,7 +45,7 @@ def fillingdeliveryorder(request):
         item_list = PurchaseOrderItem.objects.filter(purchase_order_id = pur_id)
         context = {
                 'title': 'Delivery Order Form',
-                'delivery_order_id': 'DO' + str(do_id),
+                'delivery_order_id': 'PO' + str(do_id),
                 'purchase_order_id': pur_id, 
                 'staff_id' : staff.person_id,
                 'vendor_id': po.vendor_id.vendor_id,
@@ -184,49 +184,48 @@ def deliveryorderdetails(request):
     print(items)
 
  
-    try:
-        # push the data to the database 
-        current_time = datetime.datetime.now() 
-        print(current_time)
-        do_info = DeliveryOrder(delivery_order_id = do_id, 
-                                shipping_instructions = shipping_inst, 
-                                time_created = current_time,
-                                total_price = grand_total, 
-                                person_id = staff_info,
-                                description = description,
-                                vendor_id = vendor_info, 
-                                purchase_order_id = po)
-        do_info.save()
 
-        delivery_order = DeliveryOrder.objects.get(delivery_order_id = do_id)
-        for item in items:
-            item_info = Item.objects.get(item_id = item['item_id'])
-            do_item_info = DeliveryOrderItem(delivery_order_id = delivery_order, 
-                                             item_id = item_info, 
-                                             quantity = item['quantity'], 
-                                             unit_price = item['unit_price'],
-                                             total_price = item['total_price'])
-            do_item_info.save()
+    # push the data to the database 
+    current_time = datetime.datetime.now() 
+    print(current_time)
+    do_info = DeliveryOrder(delivery_order_id = do_id, 
+                            shipping_instructions = shipping_inst, 
+                            time_created = current_time,
+                            total_price = grand_total, 
+                            person_id = staff_info,
+                            description = description,
+                            vendor_id = vendor_info, 
+                            purchase_order_id = po)
+    do_info.save()
+
+    delivery_order = DeliveryOrder.objects.get(delivery_order_id = do_id)
+    for item in items:
+        item_info = Item.objects.get(item_id = item['item_id'])
+        do_item_info = DeliveryOrderItem(delivery_order_id = delivery_order, 
+                                         item_id = item_info, 
+                                         quantity = item['quantity'], 
+                                         unit_price = item['unit_price'],
+                                         total_price = item['total_price'])
+        do_item_info.save()
 
 
-        # info pass to html
-        context = {
-                'title': 'Delivery Order Details',
-                'purchase_order_id' : po_id,
-                'delivery_order_id' : do_id,
-                'staff_id' : staff_id,
-                'vendor_id' : vendor_id,
-                'shipping_inst' : shipping_inst,
-                'rows' : items,
-                'staff_info' : staff_info,
-                'vendor_info' : vendor_info,
-                'grand_total': grand_total,
-                'time_created': current_time,
-                'description' : description
-            }
+    # info pass to html
+    context = {
+            'title': 'Delivery Order Details',
+            'purchase_order_id' : po_id,
+            'delivery_order_id' : do_id,
+            'staff_id' : staff_id,
+            'vendor_id' : vendor_id,
+            'shipping_inst' : shipping_inst,
+            'rows' : items,
+            'staff_info' : staff_info,
+            'vendor_info' : vendor_info,
+            'grand_total': grand_total,
+            'time_created': current_time,
+            'description' : description
+        }
 
-        return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
-    except IntegrityError:
+    return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
 
 def deliveryorderhistorydetails(request):
 
