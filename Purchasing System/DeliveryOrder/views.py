@@ -16,7 +16,6 @@ from django.views.generic import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import formset_factory
 from django.http.request import QueryDict
-from django.db import IntegrityError
 from decimal import Decimal
 import random
 import datetime 
@@ -55,7 +54,7 @@ def fillingdeliveryorder(request):
 
         return render(request,'DeliveryOrder/deliveryorderform.html',context)
 
-    except PurchaseOrder.ObjectDoesNotExist:
+    except PurchaseOrder.DoesNotExist:
 
         context = { 'error': 'The quotation id is invalid !',
                     'title': 'Delivery Order Form'
@@ -228,8 +227,6 @@ def deliveryorderdetails(request):
 
         return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
     except IntegrityError:
-
-        return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
 
 def deliveryorderhistorydetails(request):
 
