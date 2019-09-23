@@ -20,8 +20,7 @@ from decimal import Decimal
 import random
 import datetime 
 
-from django.utils.datastructures import MultiValueDictKeyError
-from PurchaseOrder.models import PurchaseOrder,PurchaseOrderItem
+
 
 @login_required
 def quotationform(request):
@@ -127,7 +126,7 @@ def quotationconfirmation(request):
  
 def quotationdetails(request):
     context = {}
-    quo_id = request.POST.get('quotation_id',False)
+    quo_id = request.POST['quotation_id']
     request_for_quotation_id = request.POST['request_for_quotation_id']
     staff_id = request.POST['staff_id']
     vendor_id = request.POST['vendor_id']
@@ -215,14 +214,13 @@ def quotationdetails(request):
 
 def quotationhistorydetails(request):
 
-   try:
-        print(request.body)
-        pk = request.GET['quo_id']
-        quotation = Quotation.objects.get(quotation_id = pk)
-        items = QuotationItem.objects.filter(quotation_id = pk)
+    print(request.body)
+    pk = request.GET['quo_id']
+    quotation = Quotation.objects.get(quotation_id = pk)
+    items = QuotationItem.objects.filter(quotation_id = pk)
 
-        print(quotation.person_id)
-        context = {
+    print(quotation.person_id)
+    context = {
 
             'title': 'Quotation Details',
             'request_for_quotation_id' : quotation.request_for_quotation_id.request_for_quotation_id,
@@ -235,11 +233,9 @@ def quotationhistorydetails(request):
             'grand_total': quotation.total_price,
             'time_created': quotation.time_created,
             'description' : quotation.description
-            }
+        }
   
-        return render(request,'Quotation/quotationhistorydetails.html',context)
-   except MultiValueDictKeyError:                   # Try exception MultiValueDictKeyError
-       return render(request,'PurchaseOrder/purchaseorderform.html')
+    return render(request,'Quotation/quotationhistorydetails.html',context)
 
 def quotationhistory(request):
 
