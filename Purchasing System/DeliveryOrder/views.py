@@ -227,6 +227,7 @@ def deliveryorderdetails(request):
 
         return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
     except IntegrityError:
+        None
 
 def deliveryorderhistorydetails(request):
 
