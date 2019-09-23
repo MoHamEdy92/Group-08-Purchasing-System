@@ -54,8 +54,8 @@ def fillingdeliveryorder(request):
             }
 
         return render(request,'DeliveryOrder/deliveryorderform.html',context)
-    except PurchaseOrder.ObjectDoesNotExist:
-                context = { 'error': 'The quotation id is invalid !',
+    except PurchaseOrder.DoesNotExist:
+                context = { 'error': 'The Purchase Order id is invalid !',
                     'title': 'Delivery Order Form'
             }
     return render(request,'DeliveryOrder/deliveryorderform.html',context)
@@ -225,7 +225,7 @@ def deliveryorderdetails(request):
         return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
     except IntegrityError:
 
-       return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
+        return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
 
 def deliveryorderhistorydetails(request):
 

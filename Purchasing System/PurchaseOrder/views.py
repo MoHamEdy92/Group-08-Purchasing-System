@@ -60,7 +60,7 @@ def fillingpurchaseorder(request):
             }
         return render(request,'PurchaseOrder/purchaseorderform.html',context)
 
-    except PurchaseOrder.DoesNotExist:
+    except PurchaseOrder.ObjectDoesNotExist:
         try:
 
             quotations = Quotation.objects.get(quotation_id = quo_id)
@@ -77,7 +77,7 @@ def fillingpurchaseorder(request):
             responsesItems = render(request,'PurchaseOrder/purchaseorderform.html',context).content
             return render(request,'PurchaseOrder/purchaseorderform.html',context)
 
-        except Quotation.DoesNotExist:
+        except Quotation.ObjectDoesNotExist:
 
             context = { 'error': 'The quotation id is invalid !',
                         'title': 'Purchase Order Form'
