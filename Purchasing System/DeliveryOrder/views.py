@@ -225,8 +225,7 @@ def deliveryorderdetails(request):
             'description' : description
         }
 
-        return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
-    except IntegrityError:
+    return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
 
 def deliveryorderhistorydetails(request):
 
