@@ -244,26 +244,28 @@ def purchaseorderdetails(request):
     subject = 'PURCHASE ORDER INFORMATION: '+ po_id
     message = 'This is the Purchase Order Information: \n'+'Person In Charge: '+staff.person_name+'\n'+'Ship to:'+staff.person_address+ '\n' +'Purchase Order Number: ' + po_id + '\n'+'Quotation ID: ' + quotation.quotation_id + '\n'+'Time Issued: ' + str(current_time) + '\n'+'Vendor ID: ' + vendor_id + '\n'+'Description: ' + description + '\n'+'Shipping Instructions: ' + shipping_inst + '\n'+ str(x) +'\n'
 
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [vendor_info.vendor_email,]
-    send_mail( subject, message, email_from, recipient_list )
+    try:
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [vendor_info.vendor_email,]
+        send_mail( subject, message, email_from, recipient_list )
 
+    except ConnectionRefusedError:
     # info pass to html
-    context = {
-            'title': 'Purchase Order Details',
-            'quotation_id' : quotation_id,
-            'purchase_order_id' : po_id,
-            'vendor_id' : vendor_id,
-            'shipping_inst' : shipping_inst,
-            'rows' : items,
-            'staff' : staff,
-            'vendor_info' : vendor_info,
-            'grand_total': grand_total,
-            'time_created': current_time,
-            'description' : description
-        }
+        context = {
+                'title': 'Purchase Order Details',
+                'quotation_id' : quotation_id,
+                'purchase_order_id' : po_id,
+                'vendor_id' : vendor_id,
+                'shipping_inst' : shipping_inst,
+                'rows' : items,
+                'staff' : staff,
+                'vendor_info' : vendor_info,
+                'grand_total': grand_total,
+                'time_created': current_time,
+                'description' : description
+            }
 
-    return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
+        return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
 
 def purchaseorderhistorydetails(request):
 
