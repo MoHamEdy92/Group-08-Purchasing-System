@@ -224,7 +224,7 @@ def deliveryorderdetails(request):
             }
         return render(request,'DeliveryOrder/deliveryorderdetails.html',context)
     except IntegrityError:
-            context = { 'error': 'This Delivery Order already exists!',
+            context = { 'error': 'The Delivery Order already exists for this Purchase Order ID!',
                         'title': 'Delivery Order Details'
              }               
     return render(request,'DeliveryOrder/deliveryorderform.html',context)
