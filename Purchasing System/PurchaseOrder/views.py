@@ -25,6 +25,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 
+from prettytable import PrettyTable
 
 @login_required
 def purchaseorderform(request):
@@ -243,12 +244,13 @@ def purchaseorderdetails(request):
     subject = 'PURCHASE ORDER INFORMATION: '+ po_id
     message = 'This is the Purchase Order Information: \n'+'Person In Charge: '+staff.person_name+'\n'+'Ship to:'+staff.person_address+ '\n' +'Purchase Order Number: ' + po_id + '\n'+'Quotation ID: ' + quotation.quotation_id + '\n'+'Time Issued: ' + str(current_time) + '\n'+'Vendor ID: ' + vendor_id + '\n'+'Description: ' + description + '\n'+'Shipping Instructions: ' + shipping_inst + '\n'+ str(x) +'\n'
 
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [vendor_info.vendor_email,]
-    send_mail( subject, message, email_from, recipient_list )
-
+    try:
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [vendor_info.vendor_email,]
+        send_mail( subject, message, email_from, recipient_list )
+    except ConnectionRefusedError:
     # info pass to html
-    context = {
+        context = {
             'title': 'Purchase Order Details',
             'quotation_id' : quotation_id,
             'purchase_order_id' : po_id,
@@ -262,7 +264,7 @@ def purchaseorderdetails(request):
             'description' : description
         }
 
-    return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
+        return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
 
 def purchaseorderhistorydetails(request):
 
