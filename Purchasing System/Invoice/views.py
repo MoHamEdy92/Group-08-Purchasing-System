@@ -54,7 +54,7 @@ def fillinginvoice(request):
         responsesItems = render(request,'Invoice/invoiceform.html',context).content
         return render(request,'Invoice/invoiceform.html',context)
 
-    except Invoice.DoesNotExist:
+    except PurchaseOrder.DoesNotExist: # PurchaseOrder change from invoice
 
         context = { 'error': 'The invoice id is invalid !',
                     'title': 'Invoice Form'
