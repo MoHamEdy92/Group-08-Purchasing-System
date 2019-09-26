@@ -213,14 +213,14 @@ def quotationdetails(request):
     return render(request,'Quotation/quotationdetails.html',context)
 
 def quotationhistorydetails(request):
+    try:
+        print(request.body)
+        pk = request.GET['quo_id']
+        quotation = Quotation.objects.get(quotation_id = pk)
+        items = QuotationItem.objects.filter(quotation_id = pk)
 
-    print(request.body)
-    pk = request.GET['quo_id']
-    quotation = Quotation.objects.get(quotation_id = pk)
-    items = QuotationItem.objects.filter(quotation_id = pk)
-
-    print(quotation.person_id)
-    context = {
+        print(quotation.person_id)
+        context = {
 
             'title': 'Quotation Details',
             'request_for_quotation_id' : quotation.request_for_quotation_id.request_for_quotation_id,
@@ -233,9 +233,12 @@ def quotationhistorydetails(request):
             'grand_total': quotation.total_price,
             'time_created': quotation.time_created,
             'description' : quotation.description
-        }
+            }
   
-    return render(request,'Quotation/quotationhistorydetails.html',context)
+        return render(request,'Quotation/quotationhistorydetails.html',context)
+    except MultiValueDictKeyError:
+        return render(request,'PurchaseOrder/purchaseorderform.html')
+
 
 def quotationhistory(request):
 
