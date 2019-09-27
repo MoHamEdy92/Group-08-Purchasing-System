@@ -253,13 +253,14 @@ def requestforquotationdetails(request):
 
 def requestforquotationhistorydetails(request):
 
-    print(request.body)
-    pk = request.GET['rfq_id']
-    request_for_quotation = RequestForQuotation.objects.get(request_for_quotation_id = pk)
-    items = RequestForQuotationItem.objects.filter(request_for_quotation_id = pk)
-
-    print(request_for_quotation.person_id)
-    context = {
+    try:
+        print(request.body)
+        pk = request.GET['rfq_id']
+        request_for_quotation = RequestForQuotation.objects.get(request_for_quotation_id = pk)
+        items = RequestForQuotationItem.objects.filter(request_for_quotation_id = pk)
+    except MultiValueDictKeyError:
+        print(request_for_quotation.person_id)
+        context = {
 
             'title': 'Request For Quotation Details',
             'purchase_requisition_id' : request_for_quotation.purchase_requisition_id.pr_id,
@@ -272,9 +273,9 @@ def requestforquotationhistorydetails(request):
             'grand_total': request_for_quotation.total_price,
             'time_created': request_for_quotation.time_created,
             'description' : request_for_quotation.description
-        }
+            }
   
-    return render(request,'RequestForQuotation/requestforquotationhistorydetails.html',context)
+        return render(request,'RequestForQuotation/requestforquotationhistorydetails.html',context)
 
 def requestforquotationhistory(request):
 
