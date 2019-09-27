@@ -14,9 +14,10 @@ from RequestForQuotation.models import RequestForQuotation,RequestForQuotationIt
 from PurchaseRequisition.models import PurchaseRequisition,PurchaseRequisitionItem
 from django.views.generic import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
+
 from django.http.request import QueryDict
 from decimal import Decimal
-# from prettytable import PrettyTable
+from prettytable import PrettyTable
 from django.core.mail import send_mail
 from django.conf import settings
 import random
@@ -253,12 +254,12 @@ def requestforquotationdetails(request):
 
 def requestforquotationhistorydetails(request):
 
-    try:
+    
         print(request.body)
         pk = request.GET['rfq_id']
         request_for_quotation = RequestForQuotation.objects.get(request_for_quotation_id = pk)
         items = RequestForQuotationItem.objects.filter(request_for_quotation_id = pk)
-    except MultiValueDictKeyError:
+   
         print(request_for_quotation.person_id)
         context = {
 
@@ -276,6 +277,7 @@ def requestforquotationhistorydetails(request):
             }
   
         return render(request,'RequestForQuotation/requestforquotationhistorydetails.html',context)
+    
 
 def requestforquotationhistory(request):
 
