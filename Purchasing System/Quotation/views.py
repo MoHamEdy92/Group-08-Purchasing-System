@@ -222,6 +222,7 @@ def quotationhistorydetails(request):
         print(quotation.person_id)
         context = {
 
+
             'title': 'Quotation Details',
             'request_for_quotation_id' : quotation.request_for_quotation_id.request_for_quotation_id,
             'quotation_id' : pk,
