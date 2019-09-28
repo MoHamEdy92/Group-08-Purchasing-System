@@ -19,7 +19,7 @@ from django.http.request import QueryDict
 from decimal import Decimal
 import random
 import datetime 
-
+from django.utils.datastructures import MultiValueDictKeyError 
 
 
 @login_required
@@ -213,6 +213,7 @@ def quotationdetails(request):
     return render(request,'Quotation/quotationdetails.html',context)
 
 def quotationhistorydetails(request):
+
     try:
         print(request.body)
         pk = request.GET['quo_id']
@@ -221,7 +222,6 @@ def quotationhistorydetails(request):
 
         print(quotation.person_id)
         context = {
-
 
             'title': 'Quotation Details',
             'request_for_quotation_id' : quotation.request_for_quotation_id.request_for_quotation_id,
@@ -234,12 +234,12 @@ def quotationhistorydetails(request):
             'grand_total': quotation.total_price,
             'time_created': quotation.time_created,
             'description' : quotation.description
-            }
+        }
   
         return render(request,'Quotation/quotationhistorydetails.html',context)
+
     except MultiValueDictKeyError:
         return render(request,'PurchaseOrder/purchaseorderform.html')
-
 
 def quotationhistory(request):
 
