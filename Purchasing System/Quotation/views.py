@@ -145,7 +145,7 @@ def quotationdetails(request):
     items_quantity = q.getlist('quantity')
     items_unit_price = q.getlist('unit_price')
     items_total_price = q.getlist('total_price')
-    items_reference_id = q.getlist('ref_id')
+    #items_reference_id = q.getlist('ref_id')
 
 
     items = list()
@@ -159,7 +159,7 @@ def quotationdetails(request):
         item_table = {
             'item_name': items_name[i],
             'item_id': items_id[i],
-            'ref_id' : items_reference_id[i],
+            #'ref_id' : items_reference_id[i],
             'quantity' : items_quantity[i],
             'unit_price': items_unit_price[i],
             'total_price': total
@@ -190,7 +190,7 @@ def quotationdetails(request):
                                          item_id = item_info, 
                                          total_price = item['total_price'],
                                          quantity = item['quantity'], 
-                                         ref_id = item['ref_id'],
+                                         #ref_id = item['ref_id'],
                                          unit_price = item['unit_price'])
         quo_item_info.save()
 

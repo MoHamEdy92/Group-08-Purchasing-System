@@ -135,8 +135,8 @@ def invoicedetails(request):
     purchase_order_id = request.POST['purchase_order_id']
     staff_id = request.POST['staff_id']
     vendor_id = request.POST['vendor_id']
-    description = request.POST['description']   
-    purchaseorder = get_object_or_404(PurchaseOrder.objects.filter(purchase_order_id = purchase_order_id)) # second changes 
+    description = request.POST['description']
+    purchaseorder = get_object_or_404(PurchaseOrder.objects.filter(purchase_order_id = purchase_order_id)) # second changes
     #before :purchaseorder = get_object_or_404(PurchaseOrder)
 
     staff_info = Person.objects.get(person_id = staff_id)
