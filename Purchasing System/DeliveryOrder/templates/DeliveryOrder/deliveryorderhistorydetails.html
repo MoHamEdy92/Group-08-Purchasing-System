@@ -16,7 +16,7 @@
                 <input type="text" class="form-control" name="delivery_order_id" value="{{delivery_order_id}}" readonly>
             </div>
             <div class="col">
-                <label class="labelpodetails">Quotation ID</label>
+                <label class="labelpodetails">Purchase Order ID</label>
               <input type="text" class="form-control" name="purchase_order_id" value="{{purchase_order_id}}" readonly>
             </div>
             <div class="col">
@@ -53,7 +53,7 @@
               {% for r in rows %}
             <tr>
                  <td>{{r.item_id}}</td>
-                 <td>{{r.item_name}}</td>
+                 <td>{{r.item_id.item_name}}</td>
                  <td>{{r.quantity}}</td>
                  <td>{{r.unit_price}}</td>
                  <td>{{r.total_price}}</td>
