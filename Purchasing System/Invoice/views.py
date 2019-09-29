@@ -45,7 +45,7 @@ def fillinginvoice(request):
         context = {
                 'title': 'Invoice Form',
                 'invoice_id': 'INV' + str(inv_id),
-                'purchase_order_id': inv_id, 
+                'purchase_order_id': pur_id, 
                 'staff_id' : purchase_orders.person_id.person_id,
                 'vendor_id': purchase_orders.vendor_id.vendor_id,
                 'rows':item_list
