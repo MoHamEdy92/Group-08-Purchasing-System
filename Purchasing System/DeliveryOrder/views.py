@@ -241,6 +241,7 @@ def deliveryorderhistorydetails(request):
     pk = request.GET['do_id']
     delivery_order = DeliveryOrder.objects.get(delivery_order_id = pk)
     items = DeliveryOrderItem.objects.filter(delivery_order_id = pk)
+    staff = Person.objects.get(person_id=delivery_order.person_id.person_id)
 
     print(delivery_order.person_id)
     context = {
