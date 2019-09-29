@@ -43,7 +43,7 @@
             <thead>
                 <tr>
                     <th scope="col">Item ID</th>
-                    <th scope="col">Reference ID</th>
+                    
                     <th scope="col">Item</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price Per Unit (RM)</th>
@@ -54,10 +54,10 @@
                 {% for r in rows %}
                 <tr>
                     <td><input type="text" class="form-control" name="item_id" value="{{r.item_id}}" readonly> </td>
-                    <td><input type="text" class="form-control" name="ref_id" placeholder = "Reference ID"> </td>
+                   
                     <td><input type="text" class="form-control" name="item_name" value="{{r.item_id.item_name}}" readonly></td>
                     <td><input type="text" class="form-control" name="quantity" value="{{r.quantity}}" placeholder="Quantity Item" readonly></td>
-                    <td><input type="text" class="form-control" name="unit_price" value="{{r.unit_price}}"></td>
+                    <td><input type="text" class="form-control" name="unit_price" value="{{r.unit_price}}" readonly></td>
                     <td><input type="text" class="form-control" name="total_price" value="{{r.total_price}}" readonly></td>
                 </tr>
                 {% endfor %}
