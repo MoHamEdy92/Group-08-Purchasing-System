@@ -250,22 +250,23 @@ def purchaseorderdetails(request):
         send_mail( subject, message, email_from, recipient_list )
 
     except ConnectionRefusedError:
-    # info pass to html
-        context = {
-                'title': 'Purchase Order Details',
-                'quotation_id' : quotation_id,
-                'purchase_order_id' : po_id,
-                'vendor_id' : vendor_id,
-                'shipping_inst' : shipping_inst,
-                'rows' : items,
-                'staff' : staff,
-                'vendor_info' : vendor_info,
-                'grand_total': grand_total,
-                'time_created': current_time,
-                'description' : description
-            }
+        None 
 
-        return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
+    # info pass to html
+    context = {
+        'title': 'Purchase Order Details',
+        'quotation_id' : quotation_id,
+        'purchase_order_id' : po_id,
+        'vendor_id' : vendor_id,
+        'shipping_inst' : shipping_inst,
+        'rows' : items,
+        'staff' : staff,
+        'vendor_info' : vendor_info,
+        'grand_total': grand_total,
+        'time_created': current_time,
+        'description' : description
+    }
+    return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
 
 def purchaseorderhistorydetails(request):
 
