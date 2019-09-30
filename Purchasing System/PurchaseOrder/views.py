@@ -14,7 +14,6 @@ from datetime import datetime
 from app.models import Person,Item,Vendor
 from Quotation.models import Quotation, QuotationItem
 from PurchaseOrder.models import PurchaseOrder,PurchaseOrderItem
-from prettytable import PrettyTable
 
 from django.views.generic import TemplateView
 from django.core.exceptions import ObjectDoesNotExist
@@ -26,6 +25,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 
+from prettytable import PrettyTable
 
 @login_required
 def purchaseorderform(request):
@@ -244,25 +244,28 @@ def purchaseorderdetails(request):
     subject = 'PURCHASE ORDER INFORMATION: '+ po_id
     message = 'This is the Purchase Order Information: \n'+'Person In Charge: '+staff.person_name+'\n'+'Ship to:'+staff.person_address+ '\n' +'Purchase Order Number: ' + po_id + '\n'+'Quotation ID: ' + quotation.quotation_id + '\n'+'Time Issued: ' + str(current_time) + '\n'+'Vendor ID: ' + vendor_id + '\n'+'Description: ' + description + '\n'+'Shipping Instructions: ' + shipping_inst + '\n'+ str(x) +'\n'
 
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [vendor_info.vendor_email,]
-    send_mail( subject, message, email_from, recipient_list )
+    try:
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [vendor_info.vendor_email,]
+        send_mail( subject, message, email_from, recipient_list )
+
+    except ConnectionRefusedError:
+        None 
 
     # info pass to html
     context = {
-            'title': 'Purchase Order Details',
-            'quotation_id' : quotation_id,
-            'purchase_order_id' : po_id,
-            'vendor_id' : vendor_id,
-            'shipping_inst' : shipping_inst,
-            'rows' : items,
-            'staff' : staff,
-            'vendor_info' : vendor_info,
-            'grand_total': grand_total,
-            'time_created': current_time,
-            'description' : description
-        }
-
+        'title': 'Purchase Order Details',
+        'quotation_id' : quotation_id,
+        'purchase_order_id' : po_id,
+        'vendor_id' : vendor_id,
+        'shipping_inst' : shipping_inst,
+        'rows' : items,
+        'staff' : staff,
+        'vendor_info' : vendor_info,
+        'grand_total': grand_total,
+        'time_created': current_time,
+        'description' : description
+    }
     return render(request,'PurchaseOrder/purchaseorderdetails.html',context)
 
 def purchaseorderhistorydetails(request):

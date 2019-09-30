@@ -43,9 +43,9 @@
           <thead>
             <tr>
               <th scope="col">Item ID</th>
-              <th scope="col">Price Per Unit (RM)</th>
               <th scope="col">Item</th>
               <th scope="col">Quantity</th>
+              <th scope="col">Price Per Unit (RM)</th>
               <th scope="col">Total (RM)</th>
             </tr>
           </thead>
@@ -53,7 +53,7 @@
               {% for r in rows %}
             <tr>
                  <td>{{r.item_id}}</td>
-                 <td>{{r.item_name}}</td>
+                 <td>{{r.item_id.item_name}}</td>
                  <td>{{r.quantity}}</td>
                  <td>{{r.unit_price}}</td>
                  <td>{{r.total_price}}</td>

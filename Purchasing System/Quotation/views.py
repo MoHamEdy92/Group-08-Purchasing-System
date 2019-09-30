@@ -19,9 +19,8 @@ from django.http.request import QueryDict
 from decimal import Decimal
 import random
 import datetime 
+from django.utils.datastructures import MultiValueDictKeyError 
 
-from django.utils.datastructures import MultiValueDictKeyError
-from PurchaseOrder.models import PurchaseOrder,PurchaseOrderItem
 
 @login_required
 def quotationform(request):
@@ -127,7 +126,7 @@ def quotationconfirmation(request):
  
 def quotationdetails(request):
     context = {}
-    quo_id = request.POST.get('quotation_id',False)
+    quo_id = request.POST['quotation_id']
     request_for_quotation_id = request.POST['request_for_quotation_id']
     staff_id = request.POST['staff_id']
     vendor_id = request.POST['vendor_id']
@@ -146,7 +145,7 @@ def quotationdetails(request):
     items_quantity = q.getlist('quantity')
     items_unit_price = q.getlist('unit_price')
     items_total_price = q.getlist('total_price')
-    items_reference_id = q.getlist('ref_id')
+    #items_reference_id = q.getlist('ref_id')
 
 
     items = list()
@@ -160,7 +159,7 @@ def quotationdetails(request):
         item_table = {
             'item_name': items_name[i],
             'item_id': items_id[i],
-            'ref_id' : items_reference_id[i],
+            #'ref_id' : items_reference_id[i],
             'quantity' : items_quantity[i],
             'unit_price': items_unit_price[i],
             'total_price': total
@@ -191,7 +190,7 @@ def quotationdetails(request):
                                          item_id = item_info, 
                                          total_price = item['total_price'],
                                          quantity = item['quantity'], 
-                                         ref_id = item['ref_id'],
+                                         #ref_id = item['ref_id'],
                                          unit_price = item['unit_price'])
         quo_item_info.save()
 
@@ -215,7 +214,7 @@ def quotationdetails(request):
 
 def quotationhistorydetails(request):
 
-   try:
+    try:
         print(request.body)
         pk = request.GET['quo_id']
         quotation = Quotation.objects.get(quotation_id = pk)
@@ -235,11 +234,12 @@ def quotationhistorydetails(request):
             'grand_total': quotation.total_price,
             'time_created': quotation.time_created,
             'description' : quotation.description
-            }
+        }
   
         return render(request,'Quotation/quotationhistorydetails.html',context)
-   except MultiValueDictKeyError:                   # Try exception MultiValueDictKeyError
-       return render(request,'PurchaseOrder/purchaseorderform.html')
+
+    except MultiValueDictKeyError:
+        return render(request,'PurchaseOrder/purchaseorderform.html')
 
 def quotationhistory(request):
 
